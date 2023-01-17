@@ -51,8 +51,18 @@ describe('CoursesCardListComponent', () => {
 
 
   it("should display the first course", () => {
+    component.courses = setupCourses()
+    fixture.detectChanges()
 
-    pending();
+    const course = component.courses[0]
+
+    const card = el.query(By.css('.course-card:first-child')),
+      title = card.query(By.css('mat-card-title')),
+      img = card.query(By.css('img'))
+
+    expect(card).toBeTruthy('Could not find a course');
+    expect(title.nativeElement.textContent).toBe(course.titles.description)
+    expect(img.nativeElement.src).toBe(course.iconUrl)
 
   });
 
